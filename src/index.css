@@ -12,6 +12,18 @@ code {
     monospace;
 }
 
+#searchbar {
+  padding-top: 0.5rem;
+}
+
+#searchbar input {
+  font-size: 20px;
+}
+
+#searchbar button {
+  font-size: 20px;
+}
+
 #CompanyName {
   display: inline;
   color: white;
@@ -44,3 +56,4 @@ code {
 .navLink:hover {
   background-color: #111;
 }
+

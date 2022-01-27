@@ -1,6 +1,6 @@
 import React from 'react';
 import {  Link } from "react-router-dom";
-
+import SearchBar from './SearchBar';
 const Navbar= () =>{
   return (
   <ul className='navbar'>
@@ -19,6 +19,10 @@ const Navbar= () =>{
     <li>
       <Link to="/SignIn" className='navLink'>Sign In</Link>
     </li>
+    <li style={{float: 'right' }}>
+      <SearchBar/>
+    </li>
+  
   </ul>
   );
 }
