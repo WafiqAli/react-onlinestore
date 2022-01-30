@@ -11,15 +11,15 @@ code {
 }
 
 #searchbar {
-  padding-top: 0.5rem;
+  
 }
 
 #searchbar input {
-  font-size: 20px;
+  
 }
 
 #searchbar button {
-  font-size: 20px;
+
 }
 
 #CompanyName {
@@ -71,6 +71,7 @@ code {
   display: flex;
   padding-right: 20px;
   padding-top: 15px;  
+  
 }
 
 .collection-sort {

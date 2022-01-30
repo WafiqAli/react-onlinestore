@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import ProductGrid from './ProductGrid';
+import SearchBar from './SearchBar';
 
 const ProductNav = ({productList}) => {
     
@@ -14,7 +15,7 @@ const ProductNav = ({productList}) => {
     categoryList.unshift('All Products')
     console.log(categoryList);
     
-    const sortingList = ['Highest Price', 'Lowest Price', 'Best Rated'];
+    const sortingList = ['----------','Highest Price', 'Lowest Price', 'Best Rated'];
 
     const handleCategorySelect = (event) => {
         setSelectedCategory(event.target.value)
@@ -26,12 +27,14 @@ const ProductNav = ({productList}) => {
 
     return (
         <div>
-            <nav class="product-filter">
+            <nav className="product-filter">
     
                 <h1>{selectedCategory ? selectedCategory : categoryList[0]}</h1>
     
-                <div class="sort">
-                    <div class="collection-sort">
+                <div className="sort">
+                    
+
+                    <div className="collection-sort">
                         <label>Filter by:</label>
                         <select id='categorySelect' value={selectedCategory} onChange={handleCategorySelect}>
                             {categoryList.length > 0 && 
@@ -41,13 +44,18 @@ const ProductNav = ({productList}) => {
                         </select>
                     </div>
         
-                    <div class="collection-sort">
+                    <div className="collection-sort">
                         <label>Sort by:</label>
                         <select id='sortSelect' value={selectedSortBy} onChange={handleSortBySelect}>
                             {sortingList.map(method => (
                                 <option value={method}>{method}</option>
                             ))}
                         </select>
+                    </div>
+
+                    <div className='collection-sort'>
+                        <label>Look For:</label>
+                        <SearchBar />
                     </div>
                 </div>
             </nav>

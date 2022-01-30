@@ -19,9 +19,6 @@ const Navbar= () =>{
     <li>
       <Link to="/SignIn" className='navLink'>Sign In</Link>
     </li>
-    <li style={{float: 'right' }}>
-      <SearchBar/>
-    </li>
   
   </ul>
   );
