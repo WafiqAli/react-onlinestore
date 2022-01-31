@@ -1,17 +1,19 @@
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 
-const SearchBar = () => {
+const SearchBar = ({handleSearch}) => {
+  
+  
+
   return (
     <form action='/' method='get' id='searchbar'>
-      
       <input 
         type='text' 
         id='header-search'
-        placeholder='Search...'
+        placeholder= 'Search...'
         name='s'
+        onChange={handleSearch}
       />
-      <button type="submit"><FaSearch style={{verticalAlign: 'middle'}}/></button>
     </form>
   )
 };

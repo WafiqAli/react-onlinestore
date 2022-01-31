@@ -7,6 +7,7 @@ const ProductNav = ({productList}) => {
     
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedSortBy, setSelectedSortBy] = useState(null);
+    const [searchValue, setSearchValue] = useState(null);
 
     const categoryList = productList.map(category => {
         return category.category.charAt(0).toUpperCase() + category.category.slice(1)
@@ -18,11 +19,15 @@ const ProductNav = ({productList}) => {
     const sortingList = ['----------','Highest Price', 'Lowest Price', 'Best Rated'];
 
     const handleCategorySelect = (event) => {
-        setSelectedCategory(event.target.value)
+        setSelectedCategory(event.target.value);
     }
 
     const handleSortBySelect = (event) => {
-        setSelectedSortBy(event.target.value)
+        setSelectedSortBy(event.target.value);
+    }
+    
+    const handleSearch = (event) => {
+        setSearchValue(event.target.value);
     }
 
     return (
@@ -55,7 +60,7 @@ const ProductNav = ({productList}) => {
 
                     <div className='collection-sort'>
                         <label>Look For:</label>
-                        <SearchBar />
+                        <SearchBar handleSearch={handleSearch}/>
                     </div>
                 </div>
             </nav>
@@ -63,6 +68,7 @@ const ProductNav = ({productList}) => {
                 productList={productList} 
                 selectedCategory={selectedCategory ? selectedCategory : categoryList[0]}
                 selectedSortBy={selectedSortBy ? selectedSortBy : sortingList[0]}
+                searchValue={searchValue}
             />
         </div>
       )

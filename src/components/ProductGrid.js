@@ -1,7 +1,7 @@
 import React from 'react';
 //import {useState} from 'react';
 
-const ProductGrid = ({productList, selectedCategory, selectedSortBy}) => {
+const ProductGrid = ({productList, selectedCategory, selectedSortBy, searchValue}) => {
 
     //const [currentSortBy, setCurrentSortBy] = useState(null);
     
@@ -10,6 +10,13 @@ const ProductGrid = ({productList, selectedCategory, selectedSortBy}) => {
     if (selectedCategory !== 'All Products') {
         sorted_products = sorted_products.filter(product => product.category.toLowerCase() === selectedCategory.toLowerCase());
     }
+
+    
+    if (searchValue) {
+        sorted_products = sorted_products.filter(product => product.title.toLowerCase().includes(searchValue.toLowerCase()));
+        console.log('after search value filtering: ', sorted_products);
+    }
+
 
     const sortProductList = () => {
         if (selectedSortBy === 'Highest Price') {
