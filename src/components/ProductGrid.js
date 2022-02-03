@@ -1,10 +1,12 @@
 import React from 'react';
-//import {useState} from 'react';
+import ProductModal from './ProductModal';
+import {useState} from 'react';
 
 const ProductGrid = ({productList, selectedCategory, selectedSortBy, searchValue}) => {
 
-    //const [currentSortBy, setCurrentSortBy] = useState(null);
-    
+    const [clickedProduct, setClickedProduct] = useState(null);
+    const [show, setShow] = useState(false);
+
     let sorted_products = [...productList];
     
     if (selectedCategory !== 'All Products') {
@@ -40,29 +42,47 @@ const ProductGrid = ({productList, selectedCategory, selectedSortBy, searchValue
     }*/
 
     sortProductList();
+   
     //console.log(selectedCategory);
     //console.log(selectedSortBy);
     
     console.log(sorted_products);
 
+    const handleClick = (event) => {
+        const prod_index = event.currentTarget.getAttribute("data-index");
+        setClickedProduct(sorted_products[prod_index]);
+        setShow(true);
+    }
+    
+    const closeModal = () => {
+        console.log('close');
+        setShow(false);        
+    }
+
     return (
-        <section className="products">
-        {sorted_products.map(product => {
-            if (selectedCategory === 'All Products' || product.category.toLowerCase() === selectedCategory.toLowerCase()) {
-                return (
-                    <div className="product-card">
-                        <div className="product-image">
-                            <img src={product.image} alt='Error'/>
-                        </div>
-                        <div className="product-info">
-                            <h5>{product.title}</h5>
-                            <h6>{product.price}</h6>
-                        </div>
-                    </div>
-                )
-            } return (null);
-        })}
-        </section>
+        <div>
+            <ProductModal clickedProduct={clickedProduct} closeModal={closeModal} show={show}/>
+            <section className="products">
+            {sorted_products.map((product, index) => {
+                if (selectedCategory === 'All Products' || product.category.toLowerCase() === selectedCategory.toLowerCase()) {
+                    return (
+                            <div className="product-card" data-index={index} onClick={handleClick}>
+                                
+                                <div className="product-image">
+                                    <img src={product.image} alt='Error'/>
+                                </div>
+                                <div className="product-info">
+                                    <h5>{product.title}</h5>
+                                    <h6>{product.price}</h6>
+                                    <h6>{product.rating.rate} &#9734; ({product.rating.count})</h6>
+                                </div>
+                            </div>
+                        
+                    )
+                } return (null);
+            })}
+            </section>
+        </div>
     )
 };
 
